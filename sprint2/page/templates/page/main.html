@@ -1,49 +1,66 @@
 <!-- Este archivo html es para los elementos inherentes de cada pagina
     (para evitar redundancia de codigo)  -->
-<DOCTYPE html>
+
+  
+<!-- Estilos  -->
+<style>
+
+  .body{
+    height: 100%;
+    padding: 0pc;
+    margin: 0px;
+  }
+
+  .page-wrapper {
+    min-height: 65%;
+  }
+
+  </style>
+
+    <DOCTYPE html>
 <html>
 <head>
     <title>Reumeet</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
+
+
+<!-- CONTENIDO GENERAL  -->
 <body>
     
-<!-- Incluir barra de navegacion  -->
-    {% include 'page/navbar.html' %}
-    <hr>
+  <!-- Barra de navegacion  -->
+  {% include 'page/navbar.html' %}
+  <hr>
 
-    <hr>
-    {% if messages %}
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
+  <hr>
+  <!-- Alerta de creacion de cuenta exitosa  -->
+  {% if messages %}
+  {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
             {{ message }}
-        </div>
-    {% endfor %}
-    {% endif %}
-    <main role="main" class="container">
-        {% block content %}
-        {% endblock %}
-      </main>
-    <hr>
+      </div>
+  {% endfor %}
+  {% endif %}
 
-    <!-- incluir footer  -->
-    <style>
-        .footer {
-          position: fixed;
-          left: 0;
-          bottom: 0;
-          width: 100%;
-          background-color: whitesmoke;
-          color: black;
-          text-align: center;
-        }
-        </style>
+
+  <!-- contenido principal de la pagina | AQUI SE INCLUYE LO QUE TENGAN LAS SUBPAGINAS (inicio, contacto, entrevistas, perfil, etc) -->
+  <div class="page-wrapper">
+    <main role="main" class="container">
+      {% block content %}
+      {% endblock %}
+    </main>
+  </div>
+  </div>  
+  <hr>
+
+  <!-- Footer  -->
+  {% include 'page/footer.html' %}
         
-        <div class="footer">
-          <p>Footer</p>
-        </div>
 </body>
+
+
+  <!-- Cosas necesarias pa la navbar que no se que hacen xd  -->
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

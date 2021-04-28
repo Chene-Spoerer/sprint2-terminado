@@ -5,6 +5,31 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 
 # Create your models here.
 
+# VALUES:
+
+class NombreField(models.Field):
+
+    description = "Nombre valido de empresa"
+
+    def __init__(self, *args, **kwargs):
+        kwargs['max_length'] = 100
+        super().__init__(*args, **kwargs)
+
+    def to_python(self, value):
+        if isinstance(value, str) or value is None:
+            return value
+        return str(value)
+    
+    def db_type(self, connection):
+        return 'NombreField'
+    
+    def get_prep_value(self, value):
+        return value
+
+    def value_to_string(self, obj):
+        value = self._get_val_from_obj(obj)
+        return self.get_db_prep_value(value)
+
 class CustomAccountManager(BaseUserManager):
 
     def create_superuser(self, email, nombre_empresa, password, **other_fields):
@@ -39,10 +64,10 @@ class CustomAccountManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(_('Correo electrónico'), unique=True)
-    nombre_empresa = models.CharField(max_length=150, unique=True)
+    nombre_empresa = NombreField(_('Nombre de tu empresa'),unique=True)
     start_date = models.DateTimeField(default=timezone.now)
     about = models.TextField(_(
-        'about'), max_length=500, blank=True)
+        'Cuentanos, en que consiste tu empresa'), max_length=500, blank=True)
     logo = models.ImageField(null=True, blank=True)
 
     # weas
@@ -79,3 +104,32 @@ class Reunion(models.Model):
     postulante = models.OneToOneField(Postulante, on_delete=models.CASCADE)
     puesto_trabajo = models.ForeignKey(Puesto_trabajo, on_delete=models.CASCADE, related_name='puesto_trabajo')
     # cv = models.FileField(upload_to='cv/') # Configurar esta wea q no entendi https://simpleisbetterthancomplex.com/tutorial/2016/08/01/how-to-upload-files-with-django.html
+
+
+'''
+class NombreField():
+
+    description = "Nombre valido de empresa"
+
+    def __init__(self, *args, **kwargs):
+        kwargs['max_length'] = 200
+        super(NombreField, self).__init__(*args, **kwargs)
+
+    def to_python(self, value):
+        if isinstance(value, str) or value is None:
+            return value
+        return str(value)
+    
+    def db_type(self, connection):
+        return 'NombreField'
+    
+    def get_prep_value(self, value):
+        return value
+
+    def value_to_string(self, obj):
+        value = self._get_val_from_obj(obj)
+        return self.get_db_prep_value(value)
+
+    __metaclass__ = models.SubfieldBase
+
+'''

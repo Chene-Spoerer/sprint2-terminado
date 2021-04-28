@@ -20,9 +20,5 @@ def inicio(request):
 def entrevistas(request):
     return render(request, 'page/entrevistas.html')
 
-@login_required(login_url='/login')
-def perfil(request):
-    return render(request, 'page/perfil.html')
-
 def contacto(request):  
     return render(request, 'page/contacto.html')

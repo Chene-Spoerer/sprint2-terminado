@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import RegistroEmpresaForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 # https://youtu.be/TBGRYkzXiTg
@@ -20,4 +21,4 @@ def register(request):
     return render(request, 'autentificacion/register.html', {'form': form})
 
 def iniciar_sesion(request):  
-    return render(request, 'autentificacion/login.html')    
+    return render(request, 'autentificacion/login.html')
