@@ -5,13 +5,12 @@ from django.forms import ModelForm
 from django import forms
 
 class RegistroEmpresaForm(UserCreationForm):
-    nombre = forms.CharField(label='Nombre de la Empresa',required=True)
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Confirme su contraseña', widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ['username','nombre','email']
+        fields = ['nombre_empresa','email']
     
     @transaction.atomic
     def data_save(self):
