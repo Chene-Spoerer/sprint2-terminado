@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from usuarios.models import User, Empresa
+from usuarios.models import User
 from django.db import transaction
 from django.forms import ModelForm
 from django import forms
@@ -18,8 +18,5 @@ class RegistroEmpresaForm(UserCreationForm):
     @transaction.atomic
     def data_save(self):
         user = super().save(commit=False)
-        user.is_empresa = True
         user.save()
-        empresa = Empresa.objects.create(user=user)
-        empresa.save()
-        return user, empresa
+        return user
