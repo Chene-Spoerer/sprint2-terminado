@@ -40,12 +40,19 @@ def crear_postulante(request):
             return redirect('/crear_entrevista')
     else:
         form = PostulanteForm()
-    return render(request, 'entrevistas/crear_entrevista.html', {'form': form})
+    return render(request, 'entrevistas/crear_postulante.html', {'form': form})
 
 def crear_entrevista(request):
-    form = EntrevistaForm
-    context = {'form':form,}
-    return render(request, 'entrevistas/crear_entrevista.html', context=context)
+    if request.method == 'POST':
+        form = EntrevistaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # nombre = request.POST.get('nombre_postulante')
+            messages.success(request, f'Entrevista creada exitosamente')
+            return redirect('/entrevistas')
+    else:
+        form = PostulanteForm()
+    return render(request, 'entrevistas/crear_entrevista.html', {'form': form})
 
 # https://youtu.be/7a23TbUXfWE :
 @login_required(login_url='/login')
