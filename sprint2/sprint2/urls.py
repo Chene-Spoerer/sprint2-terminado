@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('page.urls')),
     path('', include('autentificacion.urls')),
     path('', include('usuarios.urls')),
+    path('', include('entrevistas.urls')),
 ]

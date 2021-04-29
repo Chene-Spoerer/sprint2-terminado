@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'usuarios',
     'page',
     'autentificacion',
-#    'reuniones',
+    'entrevistas',
     'crispy_forms',
 ]
 

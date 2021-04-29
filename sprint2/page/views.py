@@ -11,25 +11,6 @@ from django.db.models import Count
 
 # revisar ? https://dev.to/zachtylr21/model-inheritance-in-django-m0j
 
-
-
-# https://youtu.be/7a23TbUXfWE :
-@login_required(login_url='/login')
-def entrevistas(request):
-    entrevistas_user = Entrevista.objects.filter(empresa=request.user)
-    pendientes = Entrevista.objects.filter(empresa=request.user, status='Pendiente').count()
-    entrevistados = Entrevista.objects.filter(empresa=request.user, status='Entrevistado/a').count()   
-    context = { 'entrevistas_user':entrevistas_user, 'pendientes': pendientes, 
-    'entrevistados':entrevistados}
-    return render(request, 'page/entrevistas.html', context)
-
-# https://youtu.be/7a23TbUXfWE :
-@login_required(login_url='/login')
-def puestos(request):
-    user = Entrevista.objects.filter(empresa=request.user)
-    puestos = Puesto_trabajo.objects.filter(empresa=request.user)
-    context = { 'puestos':puestos}
-    return render(request, 'page/puestos.html', context)
     
 @login_required(login_url='/login')
 def calendario(request):

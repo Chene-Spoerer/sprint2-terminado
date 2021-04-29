@@ -1,0 +1,94 @@
+<!-- Template de la pagina empresa -->
+{% extends 'page/main.html' %}
+<!-- Extendemos del archivo main.html -->
+
+<!-- Link de donde sacamos el diseño: https://www.bootdey.com/snippets/view/user-profile-bio-graph-and-total-sales -->
+
+<!-- Aqui va el contenido -->
+{% block content %}
+
+<div class="container">
+    <div class="main-body">
+
+        <!-- Navigacion y editar reunion -->
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Entrevistas</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{entrevista.postulante}}</li>
+
+                <div class="align-self-end ml-auto">
+                    <a href="#" class="btn btn-primary a-btn-slide-text" style="float: left;">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        <span>Editar reunion</span>
+                    </a>
+                </div>
+            </ol>
+
+        </nav>
+        <!-- /Navegacion y editar reunion -->
+
+        <!-- Datos de la reunion -->
+        <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
+                                class="rounded-circle" width="150">
+                            <div class="mt-3">
+                                <h4>{{entrevista.postulante}} </h4>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Email</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{entrevista.postulante.email}}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Fecha</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{entrevista.fecha_entrevista}}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Archivos</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                no implementado no implementado no implementado no implementado no implementado no
+                                implementado no
+                                implementado no implementado no implementado no implementado no implementado no
+                                implementado
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Datos de la reunion -->
+        <!-- Iniciar reunion boton -->
+    </div>
+    <div class="container ml-auto">
+        <a href="#" class="btn btn-primary a-btn-slide-text" style="float: left;">
+            <button type="button" class="btn btn-primary btn-lg">Iniciar reunion</button>
+        </a>
+    </div>
+    <!-- /Iniciar reunion boton -->
+</div>
+
+{% endblock %}

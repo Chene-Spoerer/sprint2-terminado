@@ -23,12 +23,3 @@ class RegistroEmpresaForm(UserCreationForm):
         empresa = Empresa.objects.create(user=user)
         empresa.save()
         return user, empresa
-    
-
-class RegistroPostulanteForm(UserCreationForm.Meta):
-
-    nombre = forms.CharField(label='nombre',required=True)
-
-    class Meta:
-        model = User
-        fields = ['nombre']

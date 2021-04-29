@@ -5,8 +5,6 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 
 # Create your models here.
 
-# VALUES:
-
 class NombreField(models.Field):
 
     description = "Nombre valido de empresa"
@@ -85,18 +83,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.nombre_empresa
 
-# class User(AbstractUser):
-#    is_empresa = models.BooleanField(default=False)
-#    is_postulante = models.BooleanField(default=False)
-#    nombre = models.CharField(max_length=200)
-
 # Empresa debe existir?
 class Empresa(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-
-# Postulante debe ser un usuario o una entidad con valores?
-#class Postulante(models.Model):
-#    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
 class Puesto_trabajo(models.Model):
     empresa = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
@@ -105,6 +94,12 @@ class Puesto_trabajo(models.Model):
 
     def __str__(self):
         return self.titulo
+
+
+
+# Postulante debe ser un usuario?
+#class Postulante(models.Model):
+#    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
 class Postulante(models.Model):
     nombre_postulante = NombreField(_('Nombre del postulante'), blank=True, null=True)
@@ -123,11 +118,12 @@ class Entrevista(models.Model):
     ('Entrevistado/a', 'Entrevistado/a'),
     ('Evaluado/a', 'Evaluado/a')
     )
+    # se puede eliminar empresa y relacionarlo a traves del puesto de trabajo...pero no se como hacerlo, asiq agregue empresa directamente
     empresa = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     fecha_entrevista = models.DateTimeField(blank=True, null=True)
     postulante = models.ForeignKey(Postulante, null=True, on_delete=models.CASCADE)
     puesto_trabajo = models.ForeignKey(Puesto_trabajo, on_delete=models.CASCADE)
-    status = models.CharField(max_length=200, null=True, choices=STATUS)
+    status = models.CharField(max_length=200, null=True, choices=STATUS, default='Pendiente')
     # cv = models.FileField(upload_to='cv/') # Configurar esta wea q no entendi https://simpleisbetterthancomplex.com/tutorial/2016/08/01/how-to-upload-files-with-django.html
 
     def __str__(self):

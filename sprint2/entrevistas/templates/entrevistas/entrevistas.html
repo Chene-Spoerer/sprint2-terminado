@@ -15,15 +15,14 @@
                     <h3 class="w-75 p-3">Entrevistas</h3>
                 </div>
                 <div class="col-md-2 float-right">
-                    <button class="btn btn-primary" (click)="onAddCategoieModal(addCategorieModal)">Crear</button>
-                    <button class="btn btn-primary" style="margin-left: 1em"
-                        (click)="onAddCategoieModal(content)">Editar</button>
+                    <a href="{% url 'crear_postulante' %}"><button class="btn btn-primary" (click)="onAddCategoieModal(addCategorieModal)">Nueva entrevista</button></a>
                 </div>
             </div>
         </div>
         <div class="card card-body">
             <table class="table">
                 <tr>
+                    <th></th>
                     <th>Postulante</th>
                     <th>Puesto de trabajo</th>
                     <th>Fecha</th>
@@ -31,6 +30,7 @@
                 </tr>
                 {% for i in entrevistas_user %}
                 <tr>
+                    <td><a href="{% url 'entrevista' i.id %}">Ver</a></td>
                     <td>{{i.postulante}}</td>
                     <td>{{i.puesto_trabajo}}</td>
                     <td>{{i.fecha_entrevista}}</td>
