@@ -17,6 +17,10 @@ class UserAdminConfig(UserAdmin):
         ('Permissions', {'fields': ('is_staff', 'is_active')}),
         ('Personal', {'fields': ('about','logo')}),
     )
-admin.site.register(User, UserAdminConfig)
+    
+# admin.site.register(User, UserAdminConfig)
+admin.site.register(User)
 admin.site.register(Empresa)
+admin.site.register(Puesto_trabajo)
+admin.site.register(Reunion)
 admin.site.register(Postulante)

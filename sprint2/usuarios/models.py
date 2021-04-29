@@ -29,6 +29,9 @@ class NombreField(models.Field):
     def value_to_string(self, obj):
         value = self._get_val_from_obj(obj)
         return self.get_db_prep_value(value)
+    
+    def __str__(self):
+        return self.value
 
 class CustomAccountManager(BaseUserManager):
 
@@ -63,7 +66,7 @@ class CustomAccountManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
 
-    email = models.EmailField(_('Correo electrónico'), unique=True)
+    email = models.EmailField(_('Correo electrónico'), max_length=254, unique=True)
     nombre_empresa = NombreField(_('Nombre de tu empresa'),unique=True)
     start_date = models.DateTimeField(default=timezone.now)
     about = models.TextField(_(
@@ -87,23 +90,48 @@ class User(AbstractBaseUser, PermissionsMixin):
 #    is_postulante = models.BooleanField(default=False)
 #    nombre = models.CharField(max_length=200)
 
-
+# Empresa debe existir?
 class Empresa(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
-class Postulante(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+# Postulante debe ser un usuario o una entidad con valores?
+#class Postulante(models.Model):
+#    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
 class Puesto_trabajo(models.Model):
-    empresa = models.OneToOneField(Empresa, on_delete=models.CASCADE)
-    titulo = models.CharField(max_length=100)
-    descripcion = models.TextField()
+    empresa = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    titulo = models.CharField(max_length=100, null=True)
+    descripcion = models.TextField(null=True)
+
+    def __str__(self):
+        return self.titulo
+
+class Postulante(models.Model):
+    nombre_postulante = NombreField(_('Nombre del postulante'), blank=True, null=True)
+    email = models.EmailField(_('Correo electrónico'), max_length=254)
+
+    # EN CASO DE QUE NO QUEDA PARA EL PUESTO, PUEDE SER CONSIDERADO EN OTRO MOMENTO, POR LO QUE ---> puesto_trabajo=NULL
+    fecha_ingresado = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.nombre_postulante
+    
 
 class Reunion(models.Model):
+    STATUS = (
+    ('Pendiente', 'Pendiente'),
+    ('Entrevistado/a', 'Entrevistado/a'),
+    ('Evaluado/a', 'Evaluado/a')
+    )
+    empresa = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     fecha_reunion = models.DateTimeField(blank=True, null=True)
-    postulante = models.OneToOneField(Postulante, on_delete=models.CASCADE)
-    puesto_trabajo = models.ForeignKey(Puesto_trabajo, on_delete=models.CASCADE, related_name='puesto_trabajo')
+    postulante = models.ForeignKey(Postulante, null=True, on_delete=models.CASCADE)
+    puesto_trabajo = models.ForeignKey(Puesto_trabajo, on_delete=models.CASCADE)
+    status = models.CharField(max_length=200, null=True, choices=STATUS)
     # cv = models.FileField(upload_to='cv/') # Configurar esta wea q no entendi https://simpleisbetterthancomplex.com/tutorial/2016/08/01/how-to-upload-files-with-django.html
+
+    def __str__(self):
+        return 'Reunion con {} por el puesto {}'.format(self.postulante, self.puesto_trabajo)
 
 
 '''

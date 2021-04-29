@@ -6,3 +6,4 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='/login')
 def perfil(request):
     return render(request, 'usuarios/perfil.html')
+

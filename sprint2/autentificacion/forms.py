@@ -25,7 +25,7 @@ class RegistroEmpresaForm(UserCreationForm):
         return user, empresa
     
 
-class RegistroPostulante(UserCreationForm.Meta):
+class RegistroPostulanteForm(UserCreationForm.Meta):
 
     nombre = forms.CharField(label='nombre',required=True)
 

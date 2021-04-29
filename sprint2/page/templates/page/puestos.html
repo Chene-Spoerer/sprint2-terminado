@@ -1,0 +1,41 @@
+<!-- Template de la pagina inicio -->
+{% extends 'page/main.html' %}
+<!-- Extendemos del archivo main.html -->
+
+<!-- Aqui va el contenido -->
+{% block content %}
+
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <div class="row">
+                <div class="col-md-10">
+                    <h3 class="w-75 p-3">Tus puestos de trabajo</h3>
+                </div>
+                <div class="col-md-2 float-right">
+                    <button class="btn btn-primary" (click)="onAddCategoieModal(addCategorieModal)">Crear</button>
+                    <button class="btn btn-primary" style="margin-left: 1em"
+                        (click)="onAddCategoieModal(content)">Editar</button>
+                </div>
+            </div>
+        </div>
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>Puesto</th>
+                </tr>
+                {% for i in puestos %}
+                <tr>
+                    <td>{{ i.titulo }}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}

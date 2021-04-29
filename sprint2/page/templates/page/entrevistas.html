@@ -1,9 +1,78 @@
 <!-- Template de la pagina inicio -->
-{% extends 'page/main.html' %} <!-- Extendemos del archivo main.html -->
+{% extends 'page/main.html' %}
+<!-- Extendemos del archivo main.html -->
 
 <!-- Aqui va el contenido -->
 {% block content %}
 
-<h1>Entrevistas</h1>
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <div class="row">
+                <div class="col-md-10">
+                    <h3 class="w-75 p-3">Entrevistas</h3>
+                </div>
+                <div class="col-md-2 float-right">
+                    <button class="btn btn-primary" (click)="onAddCategoieModal(addCategorieModal)">Crear</button>
+                    <button class="btn btn-primary" style="margin-left: 1em"
+                        (click)="onAddCategoieModal(content)">Editar</button>
+                </div>
+            </div>
+        </div>
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>Postulante</th>
+                    <th>Puesto de trabajo</th>
+                    <th>Fecha</th>
+                    <th>Estado de la entrevista</th>
+                </tr>
+                {% for i in reuniones_user %}
+                <tr>
+                    <td>{{i.postulante}}</td>
+                    <td>{{i.puesto_trabajo}}</td>
+                    <td>{{i.fecha_reunion}}</td>
+                    <td>{{i.status}}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+
+</div>
+<br>
+<hr>
+<br>
+<div class="row">
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-black  mb-3" id="orders-delivered">
+                <div class="card-header">
+                    <h5 class="card-title">Entrevistas pendientes por realizar</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{pendientes}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-black  mb-3" id="orders-pending">
+                <div class="card-header">
+                    <h5 class="card-title">Entrevistas pendientes por evaluar</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{entrevistados}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}

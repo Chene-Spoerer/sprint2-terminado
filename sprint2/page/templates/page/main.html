@@ -1,7 +1,7 @@
+{% load static %}
 <!-- Este archivo html es para los elementos inherentes de cada pagina
     (para evitar redundancia de codigo)  -->
 
-  
 <!-- Estilos  -->
 <style>
 
@@ -20,6 +20,7 @@
     <DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"> 
     <title>Reumeet</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -32,8 +33,6 @@
   <!-- Barra de navegacion  -->
   {% include 'page/navbar.html' %}
   <hr>
-
-  <hr>
   <!-- Alerta de creacion de cuenta exitosa  -->
   {% if messages %}
   {% for message in messages %}
@@ -43,12 +42,10 @@
   {% endfor %}
   {% endif %}
 
-
   <!-- contenido principal de la pagina | AQUI SE INCLUYE LO QUE TENGAN LAS SUBPAGINAS (inicio, contacto, entrevistas, perfil, etc) -->
   <div class="page-wrapper">
     <main role="main" class="container">
-      {% block content %}
-      {% endblock %}
+          {% block content %}{% endblock %}
     </main>
   </div>
   </div>  

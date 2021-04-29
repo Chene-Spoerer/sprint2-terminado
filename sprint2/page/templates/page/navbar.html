@@ -1,8 +1,11 @@
 <!-- Template de la barra de navegacion incluida en main! -->
 
+  <!-- en caso de querer cargar multimedia: (/static) (por ahora no hay)-->
+{% load static %} 
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary"> 
   <div class="container">
-    <a class="navbar-brand" href="/">Navbar</a>
+    <a class="navbar-brand" href="/"  style="font-size:25px"; >ReuMeet</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -15,14 +18,20 @@
 
           <!-- Paginas que aparecen en la navbar solo cuando se está logueado (centro)-->
         {% if request.user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="#">Entrevistas</a>
+        <li class="nav-item active">
+          <a class="nav-link" href="/entrevistas">Entrevistas</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
+          <a class="nav-link" href="/calendario">Calendario</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/puestos">Puestos de trabajo</a>
+        </li>
+        <li class="nav-item active">
           <a class="nav-link" href="#">Buscador</a>
         </li>
         {% endif %}
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link disabled" href="#">FAQ</a>
         </li>
       </ul>
@@ -32,10 +41,10 @@
 
         <!-- Paginas que aparecen en la navbar solo cuando se está logueado (derecha) -->
         {% if request.user.is_authenticated %}
-          <a class="nav-item nav-link" href="/perfil">Perfil</a>
+          <a class="nav-item nav-link active" href="/perfil">Perfil</a>
           <a class="nav-item nav-link" href="/logout">Cerrar Sesion</a>
           {% else %}
-            <a class="nav-item nav-link" href="/register">Registrarse</a>
+            <a class="nav-item nav-link active" href="/register">Registrarse</a>
             <a class="nav-item nav-link" href="/login">Iniciar sesion</a>
         {% endif %}
     </div>
