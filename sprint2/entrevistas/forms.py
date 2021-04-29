@@ -1,12 +1,7 @@
 from django.forms import ModelForm
-from usuarios.models import *
-
-class PostulanteForm(ModelForm):
-    class Meta:
-        model = Postulante
-        fields = '__all__'
+from .models import *
 
 class EntrevistaForm(ModelForm):
     class Meta:
         model = Entrevista
-        fields = ['fecha_entrevista', 'postulante', 'puesto_trabajo']
+        fields = '__all__'

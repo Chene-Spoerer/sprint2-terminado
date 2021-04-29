@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from usuarios.models import *
+from .models import *
 from .forms import *
 
 # Create your views here.
@@ -30,28 +30,16 @@ def entrevista(request, pk):
     context = { 'entrevista':entrevista, }
     return render(request, 'entrevistas/entrevista.html', context)
 
-def crear_postulante(request):
-    if request.method == 'POST':
-        form = PostulanteForm(request.POST)
-        if form.is_valid():
-            form.save()
-            nombre = request.POST.get('nombre_postulante')
-            messages.success(request, f'Postulante creado exitosamente')
-            return redirect('/crear_entrevista')
-    else:
-        form = PostulanteForm()
-    return render(request, 'entrevistas/crear_postulante.html', {'form': form})
-
 def crear_entrevista(request):
     if request.method == 'POST':
         form = EntrevistaForm(request.POST)
         if form.is_valid():
             form.save()
-            # nombre = request.POST.get('nombre_postulante')
+            nombre = request.POST.get('nombre_postulante')
             messages.success(request, f'Entrevista creada exitosamente')
             return redirect('/entrevistas')
     else:
-        form = PostulanteForm()
+        form = EntrevistaForm()
     return render(request, 'entrevistas/crear_entrevista.html', {'form': form})
 
 # https://youtu.be/7a23TbUXfWE :

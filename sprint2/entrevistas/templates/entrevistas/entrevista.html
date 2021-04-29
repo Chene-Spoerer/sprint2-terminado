@@ -14,7 +14,7 @@
         <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Entrevistas</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{entrevista.postulante}}</li>
+                <li class="breadcrumb-item active" aria-current="page">{{entrevista.nombre_postulante}}</li>
 
                 <div class="align-self-end ml-auto">
                     <a href="#" class="btn btn-primary a-btn-slide-text" style="float: left;">
@@ -36,7 +36,7 @@
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
                                 class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4>{{entrevista.postulante}} </h4>
+                                <h4>{{entrevista.nombre_postulante}} </h4>
 
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                                 <h6 class="mb-0">Email</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                {{entrevista.postulante.email}}
+                                {{entrevista.email}}
                             </div>
                         </div>
                         <hr>
