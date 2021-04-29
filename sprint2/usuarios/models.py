@@ -117,21 +117,21 @@ class Postulante(models.Model):
         return self.nombre_postulante
     
 
-class Reunion(models.Model):
+class Entrevista(models.Model):
     STATUS = (
     ('Pendiente', 'Pendiente'),
     ('Entrevistado/a', 'Entrevistado/a'),
     ('Evaluado/a', 'Evaluado/a')
     )
     empresa = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
-    fecha_reunion = models.DateTimeField(blank=True, null=True)
+    fecha_entrevista = models.DateTimeField(blank=True, null=True)
     postulante = models.ForeignKey(Postulante, null=True, on_delete=models.CASCADE)
     puesto_trabajo = models.ForeignKey(Puesto_trabajo, on_delete=models.CASCADE)
     status = models.CharField(max_length=200, null=True, choices=STATUS)
     # cv = models.FileField(upload_to='cv/') # Configurar esta wea q no entendi https://simpleisbetterthancomplex.com/tutorial/2016/08/01/how-to-upload-files-with-django.html
 
     def __str__(self):
-        return 'Reunion con {} por el puesto {}'.format(self.postulante, self.puesto_trabajo)
+        return 'Entrevista con {} por el puesto {}'.format(self.postulante, self.puesto_trabajo)
 
 
 '''

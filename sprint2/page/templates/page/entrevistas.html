@@ -29,11 +29,11 @@
                     <th>Fecha</th>
                     <th>Estado de la entrevista</th>
                 </tr>
-                {% for i in reuniones_user %}
+                {% for i in entrevistas_user %}
                 <tr>
                     <td>{{i.postulante}}</td>
                     <td>{{i.puesto_trabajo}}</td>
-                    <td>{{i.fecha_reunion}}</td>
+                    <td>{{i.fecha_entrevista}}</td>
                     <td>{{i.status}}</td>
                 </tr>
                 {% endfor %}

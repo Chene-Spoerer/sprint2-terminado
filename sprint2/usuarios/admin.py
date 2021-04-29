@@ -22,5 +22,5 @@ class UserAdminConfig(UserAdmin):
 admin.site.register(User)
 admin.site.register(Empresa)
 admin.site.register(Puesto_trabajo)
-admin.site.register(Reunion)
+admin.site.register(Entrevista)
 admin.site.register(Postulante)

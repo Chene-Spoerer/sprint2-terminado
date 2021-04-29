@@ -9,23 +9,24 @@ from django.db.models import Count
 # @login_required sirve para que los usuarios no puedan ingresar a esta pagina si esque no estan logueados:
 # https://stackoverflow.com/questions/21123559/django-redirect-all-non-authenticated-users-to-landing-page
 
-# wea q se veia interesante por no la lei:
-# https://dev.to/zachtylr21/model-inheritance-in-django-m0j
+# revisar ? https://dev.to/zachtylr21/model-inheritance-in-django-m0j
 
 
+
+# https://youtu.be/7a23TbUXfWE :
 @login_required(login_url='/login')
 def entrevistas(request):
-    reuniones_user = Reunion.objects.filter(empresa=request.user)
-    pendientes = Reunion.objects.filter(empresa=request.user, status='Pendiente').count()
-    entrevistados = Reunion.objects.filter(empresa=request.user, status='Entrevistado/a').count()
-    evaluados = Reunion.objects.filter(empresa=request.user, status='Evaluado/a')    
-    context = { 'reuniones_user':reuniones_user, 'pendientes': pendientes, 
+    entrevistas_user = Entrevista.objects.filter(empresa=request.user)
+    pendientes = Entrevista.objects.filter(empresa=request.user, status='Pendiente').count()
+    entrevistados = Entrevista.objects.filter(empresa=request.user, status='Entrevistado/a').count()   
+    context = { 'entrevistas_user':entrevistas_user, 'pendientes': pendientes, 
     'entrevistados':entrevistados}
     return render(request, 'page/entrevistas.html', context)
 
+# https://youtu.be/7a23TbUXfWE :
 @login_required(login_url='/login')
 def puestos(request):
-    user = Reunion.objects.filter(empresa=request.user)
+    user = Entrevista.objects.filter(empresa=request.user)
     puestos = Puesto_trabajo.objects.filter(empresa=request.user)
     context = { 'puestos':puestos}
     return render(request, 'page/puestos.html', context)

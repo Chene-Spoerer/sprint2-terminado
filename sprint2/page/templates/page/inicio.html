@@ -1,5 +1,6 @@
 <!-- Template de la pagina inicio -->
-{% extends 'page/main.html' %} <!-- Extendemos del archivo main.html -->
+{% extends 'page/main.html' %}
+<!-- Extendemos del archivo main.html -->
 
 <!-- Aqui va el contenido -->
 {% block content %}
@@ -9,8 +10,8 @@
     {% if not request.user.is_authenticated %}
     <header class="jumbotron my-4">
         <h1 class="display-3">Personas</h1>
-        <p class="lead">Bienvenido, para ingresar a una reunion haz click aqui.</p>
-        <a class="btn btn-primary btn-lg" href="#">Ingresar a una reunion</a>
+        <p class="lead">Bienvenido, para ingresar a una entrevista haz click aqui.</p>
+        <a class="btn btn-primary btn-lg" href="#">Ingresar a una entrevista</a>
     </header>
     <header class="jumbotron my-4">
         <h1 class="display-3">Empresas</h1>
@@ -29,7 +30,8 @@
                 <img class="card-img-top" src="https://via.placeholder.com/500x325" alt="..." />
                 <div class="card-body">
                     <h5 class="card-title">Agrega un nuevo puesto de trabajo</h5>
-                    <p class="card-text">Crea una nueva vacante a un puesto de trabajo en tu empresa y comienza a entrevistar</p>
+                    <p class="card-text">Crea una nueva vacante a un puesto de trabajo en tu empresa y comienza a
+                        entrevistar</p>
                 </div>
                 <div class="card-footer"><a class="btn btn-primary" href="/puestos">Ir a puestos de trabajo</a></div>
             </div>
@@ -38,8 +40,8 @@
             <div class="card h-100">
                 <img class="card-img-top" src="https://via.placeholder.com/500x325" alt="..." />
                 <div class="card-body">
-                    <h4 class="card-title">Fija una reunion</h4>
-                    <p class="card-text">Se organizado y planea tus reuniones con tiempo</p>
+                    <h4 class="card-title">Fija una entrevista</h4>
+                    <p class="card-text">Se organizado y planea tus entrevistas con tiempo</p>
                 </div>
                 <div class="card-footer"><a class="btn btn-primary" href="/calendario">Ir a mi calendario</a></div>
             </div>
@@ -52,21 +54,21 @@
                     <p class="card-text">¿Ya realizaste todas tus entrevistas? Evalua a los postulantes!</p>
                 </div>
                 <div class="card-footer"><a class="btn btn-primary" href="/entrevistas">Mis postulantes</a></div>
-            </div>  
+            </div>
         </div>
         <div class="col-lg-3 col-md-6 mb-4">
             <div class="card h-100">
                 <img class="card-img-top" src="https://via.placeholder.com/500x325" alt="..." />
                 <div class="card-body">
-                    <h4 class="card-title">Comienza una reunion</h4>
-                    <p class="card-text">¿Surgió una reunion innesperada? No hay problema, comienza una ahora mismo</p>
+                    <h4 class="card-title">Comienza una entrevista</h4>
+                    <p class="card-text">¿Surgió una entrevista innesperada? No hay problema, comienza una ahora mismo</p>
                 </div>
-                <div class="card-footer"><a class="btn btn-primary" href="#!">Comenzar reunion</a></div>
+                <div class="card-footer"><a class="btn btn-primary" href="#!">Comenzar entrevista</a></div>
             </div>
         </div>
     </div>
 </div>
-    {% endif %}
+{% endif %}
 </div>
 
 {% endblock %}
