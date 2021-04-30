@@ -69,10 +69,15 @@
                                 <h6 class="mb-0">Archivos</h6>
                             </div>
 
-                            <!-- POP UP (o Modal si lo buscan en google) -->
+                            <!-- Condicion que muestra el boton subir archivo o descargar archivo -->
                             <div class="col-sm-9 text-secondary">
+                                {% if entrevista.cv %}
+                                <div class="card-body"><a class="btn btn-primary"
+                                        href="{{ entrevista.cv.cv.url }}">Descargar {{ entrevista.cv.cv }}</a></div>
+                                {% else %}
                                 <div class="card-body"><a class="btn btn-primary" href="#" data-toggle="modal"
                                         data-target="#ModelCV">Subir un archivo</a></div>
+                                <!-- POP UP (o Modal si lo buscan en google) -->
                                 <div class="modal" tabindex="-1" id="ModelCV">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -84,7 +89,7 @@
                                             <div class="modal-body">
                                                 <form method="post" enctype="multipart/form-data">
                                                     {% csrf_token %}
-                                                    {{ form }}
+                                                    {{ form.as_p }}
                                                     <button type="submit">Subir archivo</button>
                                                 </form>
                                             </div>
@@ -93,9 +98,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body"><a class="btn btn-primary"
-                                        href="{{ form.cv.url }}">{{ entrevista.cv }}</a></div>
-
+                                {% endif %}
 
 
                             </div>

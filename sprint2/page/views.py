@@ -11,13 +11,15 @@ from django.db.models import Count
 
 # revisar ? https://dev.to/zachtylr21/model-inheritance-in-django-m0j
 
-    
+
 @login_required(login_url='/login')
 def calendario(request):
     return render(request, 'page/calendario.html')
 
-def contacto(request):  
+
+def contacto(request):
     return render(request, 'page/contacto.html')
+
 
 def inicio(request):
     return render(request, 'page/inicio.html')

@@ -5,4 +5,4 @@ from .models import *
 
 admin.site.register(Puesto_trabajo)
 admin.site.register(Entrevista)
-admin.site.register(Cv)
+admin.site.register(CVfield)

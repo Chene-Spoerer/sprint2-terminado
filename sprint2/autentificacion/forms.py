@@ -4,6 +4,7 @@ from django.db import transaction
 from django.forms import ModelForm
 from django import forms
 
+
 class RegistroEmpresaForm(UserCreationForm):
 
     # Unica forma que se de traducir password a contraseña: (y elminar password1 y 2 de class Meta)
@@ -13,8 +14,8 @@ class RegistroEmpresaForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['nombre_empresa','email','password1', 'password2', 'about']
-    
+        fields = ['nombre_empresa', 'email', 'password1', 'password2', 'about']
+
     @transaction.atomic
     def data_save(self):
         user = super().save(commit=False)

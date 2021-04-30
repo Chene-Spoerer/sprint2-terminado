@@ -16,14 +16,15 @@ from django.core.files.storage import FileSystemStorage
 @login_required(login_url='/login')
 def entrevistas(request):
     entrevistas_user = Entrevista.objects.filter(empresa=request.user)
-    pendientes = Entrevista.objects.filter(empresa=request.user, status='Pendiente').count()
-    entrevistados = Entrevista.objects.filter(empresa=request.user, status='Entrevistado/a').count()
+    pendientes = Entrevista.objects.filter(
+        empresa=request.user, status='Pendiente').count()
+    entrevistados = Entrevista.objects.filter(
+        empresa=request.user, status='Entrevistado/a').count()
 
     # Contexto de las variables para el template
-    context = { 'entrevistas_user':entrevistas_user, 'pendientes': pendientes, 
-    'entrevistados':entrevistados}
+    context = {'entrevistas_user': entrevistas_user, 'pendientes': pendientes,
+               'entrevistados': entrevistados}
     return render(request, 'entrevistas/entrevistas.html', context)
-
 
 
 ############################################################################################################################################################################
@@ -32,7 +33,7 @@ def entrevistas(request):
 # https://youtu.be/7a23TbUXfWE :
 @login_required(login_url='/login')
 def entrevista(request, pk):
-    entrevista  = Entrevista.objects.get(id=pk)
+    entrevista = Entrevista.objects.get(id=pk)
     form = entrevista.cv
 
 # Formulario para agrgar archivos al field cv de Entrevista del usuario que esta logueado actualmente
@@ -48,19 +49,19 @@ def entrevista(request, pk):
                     cv = form.save()
                     usuario.cv = cv
                     usuario.save()
-                    return redirect('/entrevista/%s' % pk )
+                    return redirect('/entrevista/%s' % pk)
             else:
                 form = CVform()
-            return render(request, 'entrevistas/entrevista.html', { 'entrevista':entrevista, 'form':form})
+            return render(request, 'entrevistas/entrevista.html', {'entrevista': entrevista, 'form': form})
     # if tiene cv mostramos el nombre del cv:
     else:
-        return render(request, 'entrevistas/entrevista.html', { 'entrevista':entrevista, 'form':form})
+        return render(request, 'entrevistas/entrevista.html', {'entrevista': entrevista, 'form': form})
 
 
 ############################################################################################################################################################################
 
 # Para crear una entrevista:
-#class crear_entrevista(FormView):
+# class crear_entrevista(FormView):
 #    template_name = 'crear_entrevista.html'
 #    form_class = EntrevistaForm
 #    succes_url = '/entrevistas/'
@@ -68,12 +69,11 @@ def entrevista(request, pk):
 #    def form_valid(self, form):
 #        print(form.cleaned_data)
 #        return super().form_valid(form)
-#    
+#
 #    def get_form_kwargs(self):
 #        kwargs = super(crear_entrevista, self).get_form_kwargs()
 #        kwargs['empresa'] = self.request.user
 #        return kwargs
-
 
 
 def crear_entrevista(request):
@@ -100,5 +100,5 @@ def crear_entrevista(request):
 def puestos(request):
     user = Entrevista.objects.filter(empresa=request.user)
     puestos = Puesto_trabajo.objects.filter(empresa=request.user)
-    context = { 'puestos':puestos}
+    context = {'puestos': puestos}
     return render(request, 'entrevistas/puestos.html', context)
