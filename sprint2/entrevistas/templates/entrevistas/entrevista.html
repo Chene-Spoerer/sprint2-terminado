@@ -13,7 +13,7 @@
         <!-- Navigacion y editar reunion -->
         <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Entrevistas</a></li>
+                <li class="breadcrumb-item"><a href="/entrevistas">Entrevistas</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{entrevista.nombre_postulante}}</li>
 
                 <div class="align-self-end ml-auto">
@@ -68,11 +68,36 @@
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Archivos</h6>
                             </div>
+
+                            <!-- POP UP (o Modal si lo buscan en google) -->
                             <div class="col-sm-9 text-secondary">
-                                no implementado no implementado no implementado no implementado no implementado no
-                                implementado no
-                                implementado no implementado no implementado no implementado no implementado no
-                                implementado
+                                <div class="card-body"><a class="btn btn-primary" href="#" data-toggle="modal"
+                                        data-target="#ModelCV">Subir un archivo</a></div>
+                                <div class="modal" tabindex="-1" id="ModelCV">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Sube los archivos de la reunion</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form method="post" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    {{ form }}
+                                                    <button type="submit">Subir archivo</button>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body"><a class="btn btn-primary"
+                                        href="{{ form.cv.url }}">{{ entrevista.cv }}</a></div>
+
+
+
                             </div>
                         </div>
                         <hr>
@@ -81,7 +106,7 @@
             </div>
         </div>
         <!-- /Datos de la reunion -->
-        <!-- Iniciar reunion boton -->
+        <!-- Iniciar reunion boton (no implementado) -->
     </div>
     <div class="container ml-auto">
         <a href="#" class="btn btn-primary a-btn-slide-text" style="float: left;">

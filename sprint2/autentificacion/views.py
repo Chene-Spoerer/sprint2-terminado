@@ -13,7 +13,6 @@ def register(request):
         form = RegistroEmpresaForm(request.POST)
         if form.is_valid():
             form.save()
-            username = request.POST.get('username')
             messages.success(request, f'Cuenta creada exitosamente, ahora puedes iniciar sesion!')
             return redirect('/login')
     else:
