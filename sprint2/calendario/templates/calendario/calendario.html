@@ -1,0 +1,55 @@
+<!-- Template de la pagina calendario -->
+{% extends 'page/main.html' %}
+<!-- Extendemos del archivo main.html -->
+
+{% load static %}
+
+
+
+
+
+<!-- Aqui va el contenido -->
+{% block content %}
+<link rel="stylesheet" href="{% static 'fullcalendar/lib/main.css' %}">
+
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <div class="row">
+                <div class="col-md-10">
+                    <h3 class="w-75 p-3">Calendario de reuniones</h3>
+                </div>
+
+            </div>
+        </div>
+            <div id="calendar" class="card" style="padding: 20px;">
+
+            </div>
+    </div>
+
+</div>
+
+<script src="{% static 'fullcalendar/lib/main.js' %}"></script>
+<script src="{% static 'fullcalendar/lib/locales-all.js' %}"></script>
+
+<script>document.addEventListener('DOMContentLoaded', function(){
+    var calendarUI = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarUI,{
+        events: [
+            {% for entrevista in object_list %}
+            {
+                title: "Entrevista con {{ entrevista.nombre_postulante }}",
+                start: "{{ entrevista.fecha_entrevista | date:'Y-m-d' }}",
+
+            },
+            {% endfor %}
+        ]
+    });
+    calendar.render();
+    calendar.setOption('locale','es');
+});
+</script>
+{% endblock content %}
+

@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('autentificacion.urls')),
     path('', include('usuarios.urls')),
     path('', include('entrevistas.urls')),
+    path('', include('calendario.urls')),
 ]
 
 if settings.DEBUG:

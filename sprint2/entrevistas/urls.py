@@ -8,5 +8,6 @@ urlpatterns = [
     path('entrevista/<str:pk>/', views.entrevista, name='entrevista'), # vista especifica
     path('puestos/', views.puestos),
     path('crear_entrevista/', views.crear_entrevista, name='crear_entrevista'),
+    path('crear_puesto/', views.crear_puesto, name='crear_puesto'),
 
 ]

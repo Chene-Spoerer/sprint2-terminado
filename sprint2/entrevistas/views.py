@@ -80,7 +80,7 @@ def crear_entrevista(request):
     if request.method == 'POST':
         form = EntrevistaForm(request.POST)
         # Como Entrevista.objects.filter(empresa=request.user) retorna una queryset de 1 elemento debemos "recorrerlo", debe haber otra forma pero no me la se
-        for usuario in User.objects.filter(nombre_empresa=request.user.nombre_empresa):
+        for usuario in User.objects.filter(id=request.user.id):
             if form.is_valid():
                 entrevista = form.save(commit=False)
                 entrevista.empresa = usuario
@@ -102,3 +102,20 @@ def puestos(request):
     puestos = Puesto_trabajo.objects.filter(empresa=request.user)
     context = {'puestos': puestos}
     return render(request, 'entrevistas/puestos.html', context)
+
+############################################################################################################################################################################
+
+
+def crear_puesto(request):
+    if request.method == 'POST':
+        form = PuestoForm(request.POST)
+        for usuario in User.objects.filter(id=request.user.id):
+            if form.is_valid():
+                puesto = form.save(commit=False)
+                puesto.empresa = usuario
+                puesto.save()
+                messages.success(request, f'Puesto creado exitosamente')
+                return redirect('/puestos')
+    else:
+        form = PuestoForm()
+    return render(request, 'entrevistas/crear_puesto.html', {'form': form})

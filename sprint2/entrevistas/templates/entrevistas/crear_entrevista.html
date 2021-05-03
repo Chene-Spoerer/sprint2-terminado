@@ -1,6 +1,9 @@
 {% extends 'page/main.html' %}
-<!-- Extendemos del archivo main.html -->
+<!-- Extendemos del archivo main.html -->>
 {% load crispy_forms_tags %}
+<!-- para estilo del formulario -->
+
+<!-- Contenido del bloque -->
 {% block content %}
 <div class="row">
     <div class="col-md-8">
@@ -8,7 +11,7 @@
             <form method="POST">
                 {% csrf_token %}
                 <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Crea tu entrevista</legend>
+                    <legend class="border-bottom mb-4">Añade una entrevista</legend>
                     {{ form|crispy }}
                 </fieldset>
                 <div class="form-group">
@@ -16,4 +19,6 @@
                 </div>
             </form>
         </div>
-        {% endblock %}
+    </div>
+</div>
+{% endblock %}
