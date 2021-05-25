@@ -40,7 +40,7 @@
         events: [
             {% for entrevista in object_list %}
             {
-                title: "Entrevista con {{ entrevista.nombre_postulante }}",
+                title: "Entrevista con {{ entrevista.nombre_postulante }} {{ entrevista.fecha_entrevista | date:'Y-m-d' }}",
                 start: "{{ entrevista.fecha_entrevista | date:'Y-m-d' }}",
 
             },
